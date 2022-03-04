@@ -1,11 +1,12 @@
 
 #global variables
-shopping_cart = {}
-options = {'1','2','3','4'}
-item_type = {'necklace', 'ring', 'earings', 'a necklace', 'a ring' }
+
 
 
 def primary_page():
+    shopping_cart = {}
+    options = {'1','2','3','4'}
+    item_type = {'necklace', 'ring', 'earings', 'a necklace', 'a ring' }    
 
     #welcome message 
     print("Welcome to Goth Angel! Your cart is currently empty. ")
@@ -48,24 +49,25 @@ def add_item(cart):
         elif repeat_item == 'no':
             print("Okay, this item will not be added to your cart")   
     else: 
-        add_to_cart = input("Good choice. This item has been added to your cart. ")
-        cart[item_type] = cart[item_type] +1
-        
-        
-
-  
+        print("Good choice. This item has been added to your cart. ")
+        cart[item_type] = 1
+          
 
 def remove_item(cart):
     item_type = input("Enter the name of the item you'd like to remove: ")
     print("Are you sure you would like to remove this item? Yes or No")
-    if item_type in {'necklace','earings','ring'}:
+    if item_type in cart:
         del(cart[item_type])
 
 
 def view_cart(cart): 
-    for item in shopping_cart:
-        print("---Current Shopping Cart----")
-        print(item_type, ":",cart[item_type])
+    if cart:
+
+        for item in cart:
+            print("---Current Shopping Cart----")
+            print(item, ":",cart[item])
+    else:
+        print("Your cart is currently empty")
 
 primary_page()
     
