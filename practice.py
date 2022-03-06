@@ -8,12 +8,12 @@ def primary_page():
     options = {'1','2','3','4'}
     item_type = {'necklace', 'ring', 'earings', 'a necklace', 'a ring' }    
 
-    #welcome message 
+            #welcome message 
     print("Welcome to Goth Angel! Your cart is currently empty. ")
-
 
     user_active = True
     while user_active == True:
+
 
         print("""
         Would you like to: 
@@ -41,31 +41,40 @@ def primary_page():
     
     
 def add_item(cart):
-    item_type = input("Would you like to buy a necklace, a ring, or earings. Enter an item: ")
-    if item_type in cart:
-        repeat_item = input("Item already in shopping cart. Would you like to add it again? Yes or No ")
-        if repeat_item == 'yes':
-            cart[item_type] = cart[item_type] +1
-        elif repeat_item == 'no':
-            print("Okay, this item will not be added to your cart")   
-    else: 
-        print("Good choice. This item has been added to your cart. ")
-        cart[item_type] = 1
-          
+    item_type = input("Would you like to buy a necklace, a ring, or earings. Enter an item: ").lower()
+    complete_design = {}
+    color = input("What color would you like your item to be? Lavendar/Soft Pink/Lime Green/Baby Blue ").lower()
+    style = input("What beads would you like to use for your item? Smiley Face/Dice/Angel Wing/Flower ").lower()
+
+    #store color : style in a dictionary
+    complete_design [color] = style
+  
+    for color, style in complete_design.items():
+            confirmation = input(f"Please confirm your design: A {color} {item_type} with {style} beads. Type 'yes' to confirm, type 'no' to be brought back to the main menu. ")
+            if confirmation == 'yes':
+                cart[item_type] = 1
+                print(f"Wonderful. A {color} {item_type} with {style} beads has been added to your cart. You will now return back to the main menu. ")
+
 
 def remove_item(cart):
     item_type = input("Enter the name of the item you'd like to remove: ")
-    print("Are you sure you would like to remove this item? Yes or No")
-    if item_type in cart:
-        del(cart[item_type])
-
+    confirm_removal = input(f"Are you sure you want to remove your {item_type} from your cart? Yes or No ")
+    if confirm_removal == 'yes':
+        if item_type in cart:
+            print(f"Your {item_type} has been removed from your cart. You will now return to the main menu. ")
+            del(cart[item_type])
+    else: 
+        print(f"Okay, your {item_type} will stay in your cart. You will now be brought back to the main menu. ")
+            
 
 def view_cart(cart): 
     if cart:
 
         for item in cart:
+            item_cost = 20.00
             print("---Current Shopping Cart----")
             print(item, ":",cart[item])
+            print(f"{item} is {item_cost}")
     else:
         print("Your cart is currently empty")
 
